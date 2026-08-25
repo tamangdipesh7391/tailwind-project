@@ -13,7 +13,7 @@ export const initialItems = [
     subtitle: 'Set : Colour: Brown',
     price: 472.5,
     quantity: 2,
-    image: 'https://images.unsplash.com/photo-1617325247661-675ab034a77d?auto=format&fit=crop&w=300&q=80'
+    image: 'https://www.curvesandcarvings.com/media/catalog/product/cache/5928e112830e542696586a0d661d5090/c/_/c_c_dtc0050_2.jpg'
   },
   {
     id: 3,
