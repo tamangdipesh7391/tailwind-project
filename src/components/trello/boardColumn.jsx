@@ -12,7 +12,7 @@ export function Board({board, tasks, onDeleteTask}) {
             </div>
 
             <div
-                className={`task-list-${board.value}`}
+                className={`task-list task-list-${board.value}`}
             >
                 {tasks.length === 0 ? (
                     <p className="empty-state">No tasks yet.</p>

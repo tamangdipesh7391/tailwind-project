@@ -1,7 +1,7 @@
 export function TaskCard({task, onDeleteTask}) {
     return (
         <div
-            className={`task-card-${task.status}`}
+            className={`task-card task-card-${task.status}`}
             // draggable="true"
         >
             <p className="task-title mb-1">{task.title}</p>
