@@ -13,6 +13,38 @@ export function MainContent() {
     function deleteTask(taskId) {
         setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
     }
+
+    const [activeBoard, setActiveBoard] = useState(null);
+    const [formData, setFormData] = useState({ title: "", description: "" });
+
+    function addNewTask(e, boardValue) {
+        e.preventDefault();
+        const newTask = {
+            id: `sample-${tasks.length + 1}`,
+            title: formData.title || "Sample Task",
+            description: formData.description || "Task description...",
+            status: boardValue
+        };
+        setTasks(prevTasks => [...prevTasks, newTask]);
+        setFormData({ title: "", description: "" });
+        setActiveBoard(null);
+    }
+
+    function cancelAddTask() {
+        setFormData({ title: "", description: "" });
+        setActiveBoard(null);
+    }
+
+    function moveTask(e, targetStatus) {
+        e.preventDefault();
+        const taskId = e.dataTransfer.getData("text/plain");
+        setTasks(prevTasks =>
+            prevTasks.map(task =>
+                task.id === taskId ? { ...task, status: targetStatus } : task
+            )
+        );
+    }
+
     return (
         <main className="main-content">
             <header className="topbar border-b border-gray-700">
@@ -47,7 +79,20 @@ export function MainContent() {
                 {
                     taskBoards.map(board => {
                         const taskList = tasks.filter(task => task.status === board.value);
-                        return <Board key={board.value} board={board} tasks={taskList} onDeleteTask={deleteTask} />;
+                        const showAddTaskButton = activeBoard !== board.value;
+                        return <Board
+                            key={board.value}
+                            board={board}
+                            tasks={taskList}
+                            onDeleteTask={deleteTask}
+                            showAddTaskButton={showAddTaskButton}
+                            setActiveBoard={setActiveBoard}
+                            addNewTask={addNewTask}
+                            formData={formData}
+                            setFormData={setFormData}
+                            cancelAddTask={cancelAddTask}
+                            moveTask={moveTask}
+                        />;
                     })
                 }
             </section>

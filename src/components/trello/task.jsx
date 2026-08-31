@@ -1,8 +1,14 @@
 export function TaskCard({task, onDeleteTask}) {
+    function handleDragStart(e) {
+        e.dataTransfer.setData("text/plain", task.id);
+        e.dataTransfer.effectAllowed = "move";
+    }
+
     return (
         <div
             className={`task-card task-card-${task.status}`}
-            // draggable="true"
+            draggable="true"
+            onDragStart={handleDragStart}
         >
             <p className="task-title mb-1">{task.title}</p>
             <p className="task-description mb-2">{task.description}</p>
