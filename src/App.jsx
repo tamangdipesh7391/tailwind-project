@@ -1,9 +1,8 @@
-import { ShoppingCart } from "./components/shoppingCart";
-
+import { MiniTrello } from "./components/trello/trello";
 function App() {
   return (
     <>
-      <ShoppingCart/>
+      <MiniTrello/>
     </>
   );
 }
